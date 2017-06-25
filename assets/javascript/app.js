@@ -3,7 +3,7 @@ $(document).ready(function(){
 var topics = ["Frog","Cat","Dog","Turtle","Fox","Whale","Shark","Lion"];
 var queryURL;
 var keyWord;
-var apiKey = "&api+key=dc6zaTOxFJmzC";
+var apiKey = "&api_key=dc6zaTOxFJmzC";
 
 
 
@@ -28,7 +28,7 @@ $(".submitButton").on("click",function(){
 });
 
 
-$(".topics").on("click", function(){
+$(document).on("click",".topics", function(){
 
 
 	keyWord = $(this).html();
@@ -44,6 +44,7 @@ $(".topics").on("click", function(){
 
 			$("#Gifs").empty();
 		 var results = response.data;
+		 console.log(results);
 
 
           for (var i = 0; i < results.length; i++) {
@@ -57,7 +58,7 @@ $(".topics").on("click", function(){
 
             personImage.attr("src", results[i].images.original_still.url);
             personImage.attr("data-still", results[i].images.original_still.url);
-            personImage.attr("data-animate", results[i].images.fixed_height.url);
+            personImage.attr("data-animate", results[i].images.original.url);
             personImage.attr("data-state", "still");
             personImage.attr("id", "gifImages");
 						// console.log(personImage);
@@ -68,7 +69,7 @@ $(".topics").on("click", function(){
             $("#Gifs").prepend(gifDiv);
 		}
 
-		$("#gifImages").on("click",function(){
+		$(document).on("click","#gifImages", function(){
 		console.log("test");
 		var state = $(this).attr("data-state");
 		console.log(this);
